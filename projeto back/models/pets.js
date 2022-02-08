@@ -2,7 +2,7 @@ const conexao = require('../infraestrutura/conexao')
 
 class Pet {
     adiciona(pet, res) {
-        const query = 'INSERT INTO Pets ?'
+        const query = 'INSERT INTO Pets SET ?'
 
         conexao.query(query, pet, erro => {
             if(erro) {
