@@ -1,4 +1,5 @@
 const moment = require('moment')
+const axios = require('axios')
 const conexao = require('../infraestrutura/conexao')
 
 class Atendimento {
