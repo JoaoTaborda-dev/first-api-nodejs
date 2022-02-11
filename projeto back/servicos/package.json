@@ -4,6 +4,7 @@
   "description": "",
   "main": "clientes.js",
   "scripts": {
+    "start": "nodemon clientes.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

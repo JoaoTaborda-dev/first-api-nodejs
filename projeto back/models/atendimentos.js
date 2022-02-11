@@ -9,7 +9,7 @@ class Atendimento {
     )
 
     const dataEhValida = moment(data).isSameOrAfter(dataCriacao)
-    const clienteEhValido = atendimento.cliente.length >= 5
+    const clienteEhValido = atendimento.cliente.length >= 11
 
     const validacoes = [
       {
@@ -20,7 +20,7 @@ class Atendimento {
       {
         nome: 'cliente',
         valido: clienteEhValido,
-        mensagem: 'Cliente deve ter pelo menos 5 caracteres'
+        mensagem: 'Cliente deve ter pelo menos 11 caracteres'
       }
     ]
 
@@ -59,11 +59,13 @@ class Atendimento {
   buscaPorId(id, res) {
     const sql = `SELECT * FROM Atendimentos WHERE id = ${id}`
 
-    conexao.query(sql, (erro, resultados) => {
+    conexao.query(sql, async (erro, resultados) => {
       const atendimento = resultados[0]
+      const cpf =  atendimento.cliente
       if (erro) {
         res.status(400).json(erro)
       } else {
+        const cliente = await axios.get(`http://localhost:8082/${cpf}`) 
         res.status(200).json(atendimento)
       }
     })
