@@ -2,7 +2,11 @@ const atendimentos = require('../models/atendimentos')
 const Atendimento = require('../models/atendimentos')
 
 module.exports = app => {
-  app.get('/atendimentos', (req, res) => Atendimento.lista(res))
+  app.get('/atendimentos', (req, res) => {
+    Atendimento.lista()
+      .then(resultados => res.json(resultados))
+      .catch(erros => res.status(400).json(erros))
+  })
 
   app.get('/atendimentos/:id', (req, res) => {
     const id = parseInt(req.params.id)
