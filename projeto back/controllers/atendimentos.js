@@ -18,7 +18,9 @@ module.exports = app => {
     const atendimento = req.body
 
     Atendimento.adiciona(atendimento)
-      .then(atendimenoCadastrado => res.status(201).json(atendimenoCadastrado))
+      .then(atendimentoCadastrado =>
+        res.status(201).json(atendimentoCadastrado)
+      )
       .catch(erros => res.status(400).json(erros))
   })
 
